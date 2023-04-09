@@ -3,7 +3,9 @@ import time
 import datetime
 import requests
 
-token = "xxxx"
+with open('./token', 'r') as f:
+    token = f.read().strip()
+
 # 起点经纬度
 lat = 36.56117078993056
 lng = 116.80826334635417
