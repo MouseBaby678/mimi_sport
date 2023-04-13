@@ -24,8 +24,6 @@ def get_line():
     body = 'lat=' + str(lat + random.random() * 0.0001) + '&lng=' + str(lng + random.random() * 0.0001)
     x = requests.post(headers=headers, url="https://admin.report.mestallion.com/api/mini/sport/getline", data=body)
     time.sleep(1)
-    print('状态码：{}'.format(x.status_code))
-    print(x.json()['msg'])
 
 
 def today():
@@ -37,7 +35,7 @@ def today():
 
 def daka(lat, lng, id, line):
     print('当前打卡点：{}'.format(line))
-    print('lat:{} lng:{} id:{}'.format(lat, lng, id))
+    # print('lat:{} lng:{} id:{}'.format(lat, lng, id))
     body = "ble=false&gps=false&" + 'lat=' + str(lat + random.random() * 0.0001) + '&lng=' + str(
         lng + random.random() * 0.0001) + "&bs_id=&bs_name=&id=" + str(id)
     x = requests.post(headers=headers, url="https://admin.report.mestallion.com/api/mini/sport/daka", data=body)
@@ -61,6 +59,7 @@ def show_line(lines):
 
 if __name__ == '__main__':
     print('当前用户：{}'.format(today()['data']['user']['name']))
+    print('运动次数：{}'.format(today()['data']['user']['sport_num']))
     get_line()
     today_response = today()
     lines = today_response['data']['line']['lines']
